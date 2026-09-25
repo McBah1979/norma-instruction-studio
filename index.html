@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Норма — конструктор инструкций для учреждений культуры</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="form.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="brand"><span class="brand-mark">Н</span><div><b>НОРМА</b><small>Документы для учреждений культуры</small></div></div><span class="top-note">Рабочее пространство · РФ / ЛНР</span></header>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <button class="nav active" data-page="create"><span>▤</span> Конструктор инструкций</button>
+      <button class="nav" data-page="archive"><span>▤</span> Архив документов</button>
+      <button class="nav" data-page="laws"><span>§</span> Нормативная база <span class="nav-count" id="law-count">0</span></button>
+      <button class="nav" data-page="updates"><span>↻</span> Проверка обновлений</button>
+      <div class="sidebar-bottom"><div class="sidebar-label">ВАЖНО ЗНАТЬ</div><p>Каждый документ — проект. Перед утверждением проверьте применимость актов, местные нормы и условия конкретного рабочего места.</p></div>
+    </aside>
+    <main>
+      <section id="create" class="page active">
+        <div class="page-heading"><div><div class="eyebrow">КОНСТРУКТОР ДОКУМЕНТОВ</div><h1>Создайте инструкцию</h1><p class="subheading">Заполните сведения об учреждении — проект документа появится справа.</p></div><span class="badge">3 типа документов</span></div>
+        <div class="workspace">
+          <div class="editor">
+            <div class="card"><div class="card-title"><span class="step">01</span><div><h2>Тип документа</h2><p>Выберите нужный шаблон</p></div></div>
+              <div class="types" role="group" aria-label="Тип документа">
+                <button type="button" class="type selected" data-type="job" aria-pressed="true"><span class="type-icon">▣</span><b>Должностная</b><small>Обязанности и ответственность</small></button>
+                <button type="button" class="type" data-type="safety" aria-pressed="false"><span class="type-icon">♧</span><b>Охрана труда</b><small>Безопасность на рабочем месте</small></button>
+                <button type="button" class="type" data-type="fire" aria-pressed="false"><span class="type-icon">♨</span><b>Пожарная безопасность</b><small>Порядок действий и эвакуация</small></button>
+              </div>
+            </div>
+            <form id="document-form" class="card">
+              <div class="card-title"><span class="step">02</span><div><h2>Данные учреждения</h2><p>Используются в шапке и тексте документа</p></div></div>
+              <label>Наименование организации <span>*</span><input name="org" required maxlength="180" placeholder="Например, ГБУК ЛНР «Дворец культуры»"></label>
+              <div class="grid-two"><label>Территория применения<select name="jurisdiction"><option value="ЛНР">ЛНР</option><option value="РФ">Другие регионы РФ</option></select></label><label>Дата утверждения<input name="date" type="date"></label></div>
+              <label>Населённый пункт<input name="city" maxlength="100" placeholder="г. Луганск"></label>
+              <div class="grid-two"><label>Руководитель<input name="head" maxlength="120" placeholder="Ф. И. О."></label><label>Номер инструкции<input name="number" maxlength="40" placeholder="01/2026"></label></div>
+              <label>Должность / ответственное лицо <span>*</span><input name="role" id="role" list="role-suggestions" required maxlength="120" placeholder="Выберите из списка или напишите свою"><datalist id="role-suggestions"></datalist></label>
+              <label id="location-wrap">Место работы / объект<input name="location" maxlength="160" placeholder="Зрительный зал, библиотека, музей, сцена…"></label>
+              <label>Особенности работы и оборудования<textarea name="details" maxlength="1000" rows="3" placeholder="Например: массовые мероприятия, световое оборудование, работа с детьми, служебный вход…"></textarea></label>
+              <div id="fire-fields" hidden><div class="grid-two"><label>Адрес объекта<input name="address" maxlength="200" placeholder="Адрес здания"></label><label>Ответственный за ПБ<input name="firePerson" maxlength="120" placeholder="Ф. И. О. / должность"></label></div><label>Пути эвакуации и место сбора<textarea name="evacuation" maxlength="500" rows="2" placeholder="Укажите фактические выходы и место сбора"></textarea></label></div>
+              <button class="button primary create-button" type="submit">Создать инструкцию →</button>
+            </form>
+            <div class="card info-card"><div class="info-icon">ⓘ</div><p>Сведения сохраняются только в этом браузере. Состав инструкций необходимо дополнить с учётом СОУТ, оборудования, плана эвакуации и локальных актов учреждения.</p></div>
+          </div>
+          <div class="preview-column" id="preview-column"><div class="preview-toolbar"><div><b id="preview-heading">Должностная инструкция</b><span id="preview-status">Черновик · обновляется автоматически</span></div><div class="actions"><button id="word-btn" class="button primary" type="button">↓ Скачать Word (.docx)</button><button id="download-btn" class="button secondary" type="button">↓ HTML</button><button id="print-btn" class="button secondary" type="button">⎙ PDF</button></div></div><article id="document-preview" class="paper" aria-live="polite"></article></div>
+        </div>
+      </section>
+      <section id="archive" class="page"><div class="page-heading"><div><div class="eyebrow">АРХИВ</div><h1>Созданные инструкции</h1><p class="subheading">Сохранённые версии за любые годы на этом устройстве. Каждую можно скачать в формате Word.</p></div></div><div class="alert"><b>Снимок на момент создания</b><p>Архивная версия не обновляется при изменении нормативной базы. Перед повторным утверждением проверьте действовавшую на нужную дату редакцию актов.</p></div><div id="archive-list" class="law-list"></div></section>
+      <section id="laws" class="page"><div class="page-heading"><div><div class="eyebrow">НОРМАТИВНАЯ БАЗА</div><h1>Реестр правовых актов</h1><p class="subheading">Привяжите к шаблонам проверенные законы, приказы и постановления РФ и ЛНР.</p></div><button type="button" class="button primary" id="add-law">+ Добавить акт</button></div>
+        <div class="alert"><b>Непроверенные акты не включаются в инструкцию</b><p>Базовые записи — только подсказки для поиска. Чтобы включить акт, проверьте официальный текст, дату начала действия, применимость в ЛНР и отметьте статус «Проверен и действует». Записи из прежних версий автоматически остаются непроверенными.</p></div>
+        <div class="filters"><input id="law-search" aria-label="Поиск актов" placeholder="Поиск по названию или номеру"><select id="law-filter" aria-label="Фильтр региона"><option value="all">Все регионы</option><option value="РФ">Российская Федерация</option><option value="ЛНР">Луганская Народная Республика</option></select></div><div id="law-list" class="law-list"></div>
+        <div class="card manage"><h2>Перенос нормативной базы</h2><p>Экспортируйте добавленные акты в JSON для резервной копии или переноса на другой компьютер. При импорте одноимённые записи обновляются по ID.</p><div class="actions"><button class="button secondary" id="export-laws" type="button">↓ Экспорт JSON</button><label class="button secondary upload">↑ Импорт JSON<input id="import-laws" type="file" accept="application/json,.json" hidden></label></div></div>
+      </section>
+      <section id="updates" class="page"><div class="page-heading"><div><div class="eyebrow">МОНИТОРИНГ ИЗМЕНЕНИЙ</div><h1>Проверка источников</h1><p class="subheading">Сравнение страниц официальных порталов с предыдущей проверкой на этом устройстве.</p></div><button id="check-updates" class="button primary" type="button">↻ Проверить сейчас</button></div><div class="alert"><b>Как работает проверка</b><p>Программа сравнивает содержимое страниц источников. Изменение страницы — повод изучить новые публикации, но не доказательство изменения применимых норм. Автоматически акты в инструкции не включаются.</p></div><div id="source-list" class="source-list"></div><div class="card manage"><h2>Порядок обновления</h2><ol><li>Нажмите «Проверить сейчас» и откройте изменившийся источник.</li><li>Проверьте официальный текст, редакцию, дату вступления в силу и действие акта в ЛНР.</li><li>Добавьте или исправьте акт в разделе «Нормативная база», укажите ссылку и дату проверки.</li><li>Пересоздайте документ и проверьте текст перед утверждением.</li></ol></div></section>
+    </main>
+  </div>
+  <dialog id="law-dialog"><form id="law-form" class="dialog-inner"><div class="dialog-heading"><h2 id="dialog-title">Добавить акт</h2><button type="button" class="icon-button" id="close-dialog" aria-label="Закрыть">×</button></div><p>Статус «Проверен и действует» указывайте только после сверки официального текста и срока действия.</p><input type="hidden" name="id"><div class="grid-two"><label>Орган издания<select name="region" required><option value="РФ">РФ</option><option value="ЛНР">ЛНР</option></select></label><label>Вид акта<input name="kind" required maxlength="80" placeholder="Федеральный закон"></label></div><label>Название <span>*</span><input name="title" required maxlength="250"></label><div class="grid-two"><label>Номер и дата <span>*</span><input name="number" required maxlength="100" placeholder="№ … от …"></label><label>Статус<select name="status"><option value="review">Не проверен</option><option value="active">Проверен и действует</option><option value="repealed">Утратил силу / не применять</option></select></label></div><div class="grid-two"><label>Начало действия<input type="date" name="effectiveFrom"></label><label>Конец действия (если есть)<input type="date" name="effectiveTo"></label></div><div class="grid-two"><label>Дата проверки редакции<input type="date" name="verified"></label><label class="checkbox-label"><input type="checkbox" name="appliesLnr"> Применимость в ЛНР проверена (для актов РФ)</label></div><label>Ссылка на конкретный официальный акт <span>*</span><input name="url" type="url" required placeholder="https://…"></label><label>Применяется к<select name="scope"><option value="all">Всем типам</option><option value="job">Должностным</option><option value="safety">Охране труда</option><option value="fire">Пожарной безопасности</option></select></label><div class="dialog-actions"><button class="button secondary" id="cancel-dialog" type="button">Отмена</button><button class="button primary" type="submit">Сохранить акт</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

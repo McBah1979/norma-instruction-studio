@@ -1,0 +1,8 @@
+.create-button { width: 100%; margin-top: 3px; padding: 14px 20px; font-size: 14px; }
+.type.selected { box-shadow: inset 0 0 0 1px #278477, 0 3px 12px #20726018; }
+.type:focus-visible { outline: 3px solid #278477; outline-offset: 3px; }
+#preview-column { scroll-margin-top: 20px; }
+dialog { max-height: 90vh; overflow-y: auto; }
+#law-form .checkbox-label { display: flex; align-items: center; gap: 9px; margin-top: 25px; }
+#law-form .checkbox-label input[type="checkbox"] { display: inline-block; width: 16px; height: 16px; flex: none; margin: 0; box-shadow: none; }
+@media print { .create-button { display: none; } }
